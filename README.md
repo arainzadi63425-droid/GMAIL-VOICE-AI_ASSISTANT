@@ -1,2 +1,3 @@
-# GMAIL-VOICE-AI_ASSISTANT
-"A smart Chrome extension to draft professional emails using voice input, custom tones, and direct Gmail integration."
+### 💖 Support the Developer (Pakistan)
+If you find this tool helpful, you can support me directly:
+- **EasyPaisa:** 0344-0408329
