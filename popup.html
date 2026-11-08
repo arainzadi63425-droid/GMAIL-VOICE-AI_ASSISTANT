@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --primary-hover: #1d4ed8;
+      --success-color: #16a34a;
+      --success-hover: #15803d;
+      --voice-color: #7c3aed;
+      --voice-hover: #6d28d9;
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+    }
+
+    body {
+      width: 360px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      padding: 16px;
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      box-sizing: border-box;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      color: #60a5fa;
+    }
+
+    .glow-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      object-fit: cover;
+      animation: pulseGlow 2.5s infinite ease-in-out;
+      box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 5px rgba(37, 99, 235, 0.4); transform: scale(1); }
+      50% { box-shadow: 0 0 18px rgba(59, 130, 246, 0.8); transform: scale(1.03); }
+      100% { box-shadow: 0 0 5px rgba(37, 99, 235, 0.4); transform: scale(1); }
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    }
+
+    label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 9px;
+      background: #0f172a;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: white;
+      font-size: 12px;
+      box-sizing: border-box;
+      outline: none;
+      margin-bottom: 8px;
+    }
+
+    .row-selectors {
+      display: flex;
+      gap: 8px;
+    }
+
+    .row-selectors > div {
+      flex: 1;
+    }
+
+    .input-group {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-group input {
+      padding-right: 36px;
+      margin-bottom: 0;
+    }
+
+    .mic-btn {
+      position: absolute;
+      right: 6px;
+      top: 45%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 15px;
+      padding: 4px;
+      border-radius: 6px;
+      transition: color 0.2s;
+    }
+
+    .mic-btn:hover { color: #60a5fa; }
+
+    .mic-active {
+      color: #ef4444 !important;
+      animation: micBlink 1s infinite;
+    }
+
+    @keyframes micBlink {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+
+    .chips-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+
+    .chip {
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .chip:hover {
+      background: #2563eb;
+      color: white;
+      border-color: #2563eb;
+    }
+
+    .google-btn {
+      width: 100%;
+      background: #ffffff;
+      color: #1f2937;
+      border: none;
+      padding: 9px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .action-btn {
+      width: 100%;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+
+    .action-btn:hover { background: var(--primary-hover); }
+
+    .btn-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .gmail-open-btn {
+      flex: 1;
+      background: var(--success-color);
+      color: white;
+      border: none;
+      padding: 9px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: background 0.2s;
+    }
+
+    .gmail-open-btn:hover { background: var(--success-hover); }
+
+    .speak-btn {
+      flex: 1;
+      background: var(--voice-color);
+      color: white;
+      border: none;
+      padding: 9px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: background 0.2s;
+    }
+
+    .speak-btn:hover { background: var(--voice-hover); }
+
+    .status {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .preview-box {
+      margin-top: 8px;
+      padding: 8px;
+      background: #0f172a;
+      border-radius: 8px;
+      border: 1px dashed var(--border-color);
+      font-size: 11px;
+      color: #e2e8f0;
+      max-height: 85px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="brand">
+      <img src="icon.png" class="glow-icon" alt="AI Agent Icon">
+      <span>Gmail AI Assistant</span>
+    </div>
+  </div>
+
+  <!-- Sign In Card -->
+  <div class="card" id="auth-card">
+    <label>Account Authentication</label>
+    <button class="google-btn" id="login-btn">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="15" height="15">
+      Sign in with Google
+    </button>
+  </div>
+
+  <!-- Main Agent Interface -->
+  <div class="card hidden" id="agent-card">
+    <div id="user-info" style="font-size: 11px; color: #60a5fa; margin-bottom: 8px; font-weight: 500;"></div>
+
+    <div class="row-selectors">
+      <div>
+        <label>Greeting Style</label>
+        <select id="greeting-type">
+          <option value="islamic">Islamic (السلام علیکم)</option>
+          <option value="general">General (آداب / Hello)</option>
+          <option value="english">English (Good day)</option>
+        </select>
+      </div>
+      <div>
+        <label>Email Tone</label>
+        <select id="email-tone">
+          <option value="formal">Formal & Polite</option>
+          <option value="strict">Strict & Urgent</option>
+          <option value="friendly">Friendly / Normal</option>
+        </select>
+      </div>
+    </div>
+
+    <label>Quick Templates:</label>
+    <div class="chips-container">
+      <span class="chip" data-query="JazzCash ko complaint karni hai account block ho gaya hai">JazzCash Dispute</span>
+      <span class="chip" data-query="Easypaisa transaction failed refund request">Easypaisa Refund</span>
+      <span class="chip" data-query="WhatsApp account banned review request">WhatsApp Ban</span>
+      <span class="chip" data-query="Nadra ID card renewal inquiry">Nadra ID Card</span>
+    </div>
+
+    <label>Prompt / Voice Input</label>
+    <div class="input-group">
+      <input type="text" id="user-prompt" placeholder="Type or click mic to speak...">
+      <button class="mic-btn" id="mic-btn" title="Click to speak">🎙️</button>
+    </div>
+    
+    <button class="action-btn" id="generate-btn">✨ Generate Smart AI Draft</button>
+  </div>
+
+  <!-- Result Preview Card -->
+  <div class="card hidden" id="result-card">
+    <label>Generated Email Preview:</label>
+    <div class="preview-box" id="email-preview"></div>
+    <div class="btn-row">
+      <button class="speak-btn" id="speak-btn">🔊 Read Aloud</button>
+      <button class="gmail-open-btn" id="open-gmail-btn">🚀 Open Gmail</button>
+    </div>
+  </div>
+
+  <div class="status" id="status-text">Status: Not Signed In</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
